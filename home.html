@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <title>donongWordle</title>
+    <style>
+    .box {
+        width:50px;
+        height:50px;
+        font-size:40px;
+        text-align:center;
+        margin-bottom:10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="winner"></div>
+
+    <input class="first box">
+    <input class="first box">
+    <input class="first box">
+    <input class="first box">
+    <input class="first box">
+    <button onclick="score('.first')">제출</button>
+    <br>
+
+    <input class="second box">
+    <input class="second box">
+    <input class="second box">
+    <input class="second box">
+    <input class="second box">
+    <button onclick="score('.second')">제출</button>
+    <br>
+
+    <input class="third box">
+    <input class="third box">
+    <input class="third box">
+    <input class="third box">
+    <input class="third box">
+    <button onclick="score('.third')">제출</button>
+    <br>
+
+    <input class="fourth box">
+    <input class="fourth box">
+    <input class="fourth box">
+    <input class="fourth box">
+    <input class="fourth box">
+    <button onclick="score('.fourth')">제출</button>
+    <br>
+
+    <input class="fifth box">
+    <input class="fifth box">
+    <input class="fifth box">
+    <input class="fifth box">
+    <input class="fifth box">
+    <button onclick="score('.fifth')">제출</button>
+    <br>
+
+    <input class="sixth box">
+    <input class="sixth box">
+    <input class="sixth box">
+    <input class="sixth box">
+    <input class="sixth box">
+    <button onclick="score('.sixth')">제출</button>
+
+    <script>
+        var answer = "abcde";
+        var tried = {1:[], 2:[], 3:[], 4:[], 5:[], 'out':[]}
+        function score(area) {
+            var input = document.querySelectorAll(area)
+            var clear_memory = 1
+            console.log(input);
+            for (i=0;i<5;i++) {
+                if (input[i].value == answer[i]) {
+                    console.log(i);
+                    input[i].style.background = "green";
+                    input[i].readOnly = true
+                } else if (answer.includes(input[i].value)) {
+                    clear_memory = 0
+                    input[i].style.background = "yellow";
+                    if (!(tried[i+1].includes(input[i].value)) && input[i].value) {
+                        console.log(i*-1);
+                        input[i].readOnly = true
+                        tried[i+1].push(input[i].value)
+                    } else {
+                        console.log(tried)
+                    }
+                } else {
+                    clear_memory = 0
+                    input[i].style.background = "lightgray";
+                    if (!(tried['out'].includes(input[i].value))) {
+                        console.log(0);
+                        input[i].readoOnly = true
+                        tried[out].push(input[i].value)
+                    } else {
+                        console.log(tried)
+                    }
+                }
+            }
+            async function fetchHtmlAsText(url) {
+                return await (await fetch(url)).text();
+            }
+
+            async function importPage(target) {
+                document.querySelector('#' + target).innerHTML = await fetchHtmlAsText(target + '.html');
+            }
+
+            if (clear_memory) {
+                alert("정답!")
+                importPage("winner");
+            }
+        }
+    </script>
+</body>
+</html>
