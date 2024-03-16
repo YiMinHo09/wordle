@@ -12,55 +12,73 @@
         margin-bottom:10px;
         }
     </style>
+    <script>
+    function CheckEnter(frm, objName)
+    {
+            var keycode = event.keyCode;
+            frm = document.querySelectorAll('.box')
+            var m = frm.indexOf(indexOf(document.activeElement));
+            console.log(frm)
+            console.log(m)
+            if( keycode == 13 ){
+                for( i = m; i < frm.length; ++i ){
+                    if( objName.name == frm[i].name )
+                        break;
+                        m = i
+                    }
+                frm[++i].focus();
+             }
+    }
+    </script>
 </head>
 <body>
     <div id="winner"></div>
 
-    <input class="first box">
-    <input class="first box">
-    <input class="first box">
-    <input class="first box">
-    <input class="first box">
+    <input class="first box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
+    <input class="first box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
+    <input class="first box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
+    <input class="first box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
+    <input class="first box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
     <button onclick="score('.first')">제출</button>
     <br>
 
-    <input class="second box">
-    <input class="second box">
-    <input class="second box">
-    <input class="second box">
-    <input class="second box">
+    <input class="second box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
+    <input class="second box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
+    <input class="second box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
+    <input class="second box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
+    <input class="second box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
     <button onclick="score('.second')">제출</button>
     <br>
 
-    <input class="third box">
-    <input class="third box">
-    <input class="third box">
-    <input class="third box">
-    <input class="third box">
+    <input class="third box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
+    <input class="third box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
+    <input class="third box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
+    <input class="third box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
+    <input class="third box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
     <button onclick="score('.third')">제출</button>
     <br>
 
-    <input class="fourth box">
-    <input class="fourth box">
-    <input class="fourth box">
-    <input class="fourth box">
-    <input class="fourth box">
+    <input class="fourth box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
+    <input class="fourth box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
+    <input class="fourth box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
+    <input class="fourth box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
+    <input class="fourth box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
     <button onclick="score('.fourth')">제출</button>
     <br>
 
-    <input class="fifth box">
-    <input class="fifth box">
-    <input class="fifth box">
-    <input class="fifth box">
-    <input class="fifth box">
+    <input class="fifth box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
+    <input class="fifth box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
+    <input class="fifth box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
+    <input class="fifth box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
+    <input class="fifth box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
     <button onclick="score('.fifth')">제출</button>
     <br>
 
-    <input class="sixth box">
-    <input class="sixth box">
-    <input class="sixth box">
-    <input class="sixth box">
-    <input class="sixth box">
+    <input class="sixth box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
+    <input class="sixth box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
+    <input class="sixth box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
+    <input class="sixth box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
+    <input class="sixth box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
     <button onclick="score('.sixth')">제출</button>
 
     <script>
