@@ -13,73 +13,77 @@
         }
     </style>
     <script>
-    function CheckEnter(frm, objName)
-    {
-            var keycode = event.keyCode;
-            frm = document.querySelectorAll('.box')
-            var m = 0
-<!--            frm.indexOf(indexOf(document.activeElement));-->
+        function FocusMove() {
+            frm = Array.prototype.slice.call(document.querySelectorAll('input.box'));
             console.log(frm)
-            console.log(m)
-            if( keycode == 13 ){
-                for( i = m; i < frm.length; ++i ){
-                    if( objName.name == frm[i].name )
-                        break;
-                        m = i
-                    }
-                frm[++i].focus();
-             }
-    }
+            var keycode = event.keyCode;
+            console.log(document.activeElement)
+            var pre = frm.indexOf(document.activeElement);
+            console.log(pre)
+            console.log(keycode)
+            console.log(65 <= keycode && keycode <= 90);
+            setTimeout(function() {
+                if(65 <= keycode && keycode <= 90) {
+                    frm[pre+1].focus();
+                    console.log(pre++)
+                    console.log(frm[pre++])
+                } else if (keycode == 8) {
+                    frm[pre-1].focus();
+                    console.log(pre-1)
+                    console.log(frm[pre-1])
+                }
+            }, 0)
+        }
     </script>
 </head>
 <body>
     <div id="winner"></div>
 
-    <input class="first box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
-    <input class="first box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
-    <input class="first box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
-    <input class="first box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
-    <input class="first box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
+    <input class="first box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="first box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="first box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="first box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="first box" maxlength=1 OnKeyDown="FocusMove()">
     <button onclick="score('.first')">제출</button>
     <br>
 
-    <input class="second box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
-    <input class="second box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
-    <input class="second box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
-    <input class="second box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
-    <input class="second box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
+    <input class="second box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="second box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="second box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="second box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="second box" maxlength=1 OnKeyDown="FocusMove()">
     <button onclick="score('.second')">제출</button>
     <br>
 
-    <input class="third box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
-    <input class="third box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
-    <input class="third box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
-    <input class="third box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
-    <input class="third box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
+    <input class="third box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="third box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="third box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="third box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="third box" maxlength=1 OnKeyDown="FocusMove()">
     <button onclick="score('.third')">제출</button>
     <br>
 
-    <input class="fourth box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
-    <input class="fourth box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
-    <input class="fourth box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
-    <input class="fourth box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
-    <input class="fourth box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
+    <input class="fourth box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="fourth box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="fourth box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="fourth box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="fourth box" maxlength=1 OnKeyDown="FocusMove()">
     <button onclick="score('.fourth')">제출</button>
     <br>
 
-    <input class="fifth box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
-    <input class="fifth box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
-    <input class="fifth box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
-    <input class="fifth box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
-    <input class="fifth box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
+    <input class="fifth box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="fifth box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="fifth box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="fifth box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="fifth box" maxlength=1 OnKeyDown="FocusMove()">
     <button onclick="score('.fifth')">제출</button>
     <br>
 
-    <input class="sixth box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
-    <input class="sixth box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
-    <input class="sixth box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
-    <input class="sixth box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
-    <input class="sixth box" maxlength=1 OnKeyDown="CheckEnter(this.form,this)">
+    <input class="sixth box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="sixth box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="sixth box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="sixth box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="sixth box" maxlength=1 OnKeyDown="FocusMove()">
     <button onclick="score('.sixth')">제출</button>
 
     <script>
