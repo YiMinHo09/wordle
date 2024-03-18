@@ -19,20 +19,46 @@
             var keycode = event.keyCode;
             console.log(document.activeElement)
             var pre = frm.indexOf(document.activeElement);
+            console.log("pre")
             console.log(pre)
+            console.log("keycode")
             console.log(keycode)
             console.log(65 <= keycode && keycode <= 90);
-            setTimeout(function() {
+            if (!frm[pre].value) {
+                console.log("value false");
+                    if(65 <= keycode && keycode <= 90) {
+                        setTimeout(function() {
+                            frm[pre+1].focus();
+                            console.log("pre++")
+                            console.log(pre++)
+                            console.log("frm[pre++]")
+                            console.log(frm[pre++])
+                        }, 0)
+                    } else if (keycode == 8) {
+                        frm[pre-1].focus();
+                        console.log("pre")
+                        console.log(pre-1)
+                        console.log("frm[pre-1]")
+                        console.log(frm[pre-1])
+                    }
+            } else {
+                console.log("vlaue false")
                 if(65 <= keycode && keycode <= 90) {
                     frm[pre+1].focus();
+                    console.log("pre++")
                     console.log(pre++)
+                    console.log("frm[pre++]")
                     console.log(frm[pre++])
                 } else if (keycode == 8) {
-                    frm[pre-1].focus();
-                    console.log(pre-1)
-                    console.log(frm[pre-1])
+                    setTimeout(function() {
+                        frm[pre-1].focus();
+                        console.log("pre")
+                        console.log(pre-1)
+                        console.log("frm[pre++]")
+                        console.log(frm[pre-1])
+                    }, 0)
                 }
-            }, 0)
+            }
         }
     </script>
 </head>
