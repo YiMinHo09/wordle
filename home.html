@@ -59,6 +59,8 @@
                     }, 0)
                 }
             }
+            pre = frm.indexOf(document.activeElement);
+            frm[pre].setSelectionRange(1,1);
         }
     </script>
 </head>
@@ -138,9 +140,9 @@
                     clear_memory = 0
                     input[i].style.background = "lightgray";
                     if (!(tried['out'].includes(input[i].value))) {
-                        console.log(0);
-                        input[i].readoOnly = true
-                        tried[out].push(input[i].value)
+                        console.log(input[i]);
+                        input[i].readOnly = true
+                        tried["out"].push(input[i].value)
                     } else {
                         console.log(tried)
                     }
