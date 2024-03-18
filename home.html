@@ -67,51 +67,51 @@
 <body>
     <div id="winner"></div>
 
-    <input class="first box" maxlength=1 OnKeyDown="FocusMove()">
-    <input class="first box" maxlength=1 OnKeyDown="FocusMove()">
-    <input class="first box" maxlength=1 OnKeyDown="FocusMove()">
-    <input class="first box" maxlength=1 OnKeyDown="FocusMove()">
-    <input class="first box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="first box slot1" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="first box slot2" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="first box slot3" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="first box slot4" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="first box slot5" maxlength=1 OnKeyDown="FocusMove()">
     <button onclick="score('.first')">제출</button>
     <br>
 
-    <input class="second box" maxlength=1 OnKeyDown="FocusMove()">
-    <input class="second box" maxlength=1 OnKeyDown="FocusMove()">
-    <input class="second box" maxlength=1 OnKeyDown="FocusMove()">
-    <input class="second box" maxlength=1 OnKeyDown="FocusMove()">
-    <input class="second box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="second box slot1" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="second box slot2" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="second box slot3" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="second box slot4" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="second box slot5" maxlength=1 OnKeyDown="FocusMove()">
     <button onclick="score('.second')">제출</button>
     <br>
 
-    <input class="third box" maxlength=1 OnKeyDown="FocusMove()">
-    <input class="third box" maxlength=1 OnKeyDown="FocusMove()">
-    <input class="third box" maxlength=1 OnKeyDown="FocusMove()">
-    <input class="third box" maxlength=1 OnKeyDown="FocusMove()">
-    <input class="third box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="third box slot1" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="third box slot2" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="third box slot3" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="third box slot4" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="third box slot5" maxlength=1 OnKeyDown="FocusMove()">
     <button onclick="score('.third')">제출</button>
     <br>
 
-    <input class="fourth box" maxlength=1 OnKeyDown="FocusMove()">
-    <input class="fourth box" maxlength=1 OnKeyDown="FocusMove()">
-    <input class="fourth box" maxlength=1 OnKeyDown="FocusMove()">
-    <input class="fourth box" maxlength=1 OnKeyDown="FocusMove()">
-    <input class="fourth box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="fourth box slot1" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="fourth box slot2" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="fourth box slot3" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="fourth box slot4" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="fourth box slot5" maxlength=1 OnKeyDown="FocusMove()">
     <button onclick="score('.fourth')">제출</button>
     <br>
 
-    <input class="fifth box" maxlength=1 OnKeyDown="FocusMove()">
-    <input class="fifth box" maxlength=1 OnKeyDown="FocusMove()">
-    <input class="fifth box" maxlength=1 OnKeyDown="FocusMove()">
-    <input class="fifth box" maxlength=1 OnKeyDown="FocusMove()">
-    <input class="fifth box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="fifth box slot1" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="fifth box slot2" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="fifth box slot3" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="fifth box slot4" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="fifth box slot5" maxlength=1 OnKeyDown="FocusMove()">
     <button onclick="score('.fifth')">제출</button>
     <br>
 
-    <input class="sixth box" maxlength=1 OnKeyDown="FocusMove()">
-    <input class="sixth box" maxlength=1 OnKeyDown="FocusMove()">
-    <input class="sixth box" maxlength=1 OnKeyDown="FocusMove()">
-    <input class="sixth box" maxlength=1 OnKeyDown="FocusMove()">
-    <input class="sixth box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="sixth box slot1" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="sixth box slot2" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="sixth box slot3" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="sixth box slot4" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="sixth box slot5" maxlength=1 OnKeyDown="FocusMove()">
     <button onclick="score('.sixth')">제출</button>
 
     <script>
@@ -126,10 +126,16 @@
                     console.log(i);
                     input[i].style.background = "green";
                     input[i].readOnly = true
+                    var query = document.querySelectorAll('.slot' + (i+1).toString())
+                    for (e=0;e<6;e++) {
+                        query[e].value = input[i].value
+                        query[e].style.background = "green";
+                        query[e].readOnly = true
+                    }
                 } else if (answer.includes(input[i].value)) {
                     clear_memory = 0
-                    input[i].style.background = "yellow";
                     if (!(tried[i+1].includes(input[i].value)) && input[i].value) {
+                        input[i].style.background = "yellow";
                         console.log(i*-1);
                         input[i].readOnly = true
                         tried[i+1].push(input[i].value)
@@ -138,8 +144,8 @@
                     }
                 } else {
                     clear_memory = 0
-                    input[i].style.background = "lightgray";
                     if (!(tried['out'].includes(input[i].value))) {
+                        input[i].style.background = "lightgray";
                         console.log(input[i]);
                         input[i].readOnly = true
                         tried["out"].push(input[i].value)
@@ -163,4 +169,3 @@
         }
     </script>
 </body>
-</html>
