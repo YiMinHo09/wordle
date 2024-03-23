@@ -118,6 +118,7 @@
         var answer = "abcde";
         var tried = {1:[], 2:[], 3:[], 4:[], 5:[], 'out':[]}
         function score(area) {
+            var func_tried = tried
             var input = document.querySelectorAll(area)
             var clear_memory = 1
             console.log(input);
@@ -134,23 +135,23 @@
                     }
                 } else if (answer.includes(input[i].value)) {
                     clear_memory = 0
-                    if (!(tried[i+1].includes(input[i].value)) && input[i].value) {
+                    if (!(func_tried[i+1].includes(input[i].value)) && input[i].value) {
                         input[i].style.background = "yellow";
                         console.log(i*-1);
                         input[i].readOnly = true
-                        tried[i+1].push(input[i].value)
+                        func_tried[i+1].push(input[i].value)
                     } else {
-                        console.log(tried)
+                        console.log(func_tried)
                     }
                 } else {
                     clear_memory = 0
-                    if (!(tried['out'].includes(input[i].value))) {
+                    if (!(func_tried['out'].includes(input[i].value))) {
                         input[i].style.background = "lightgray";
                         console.log(input[i]);
                         input[i].readOnly = true
-                        tried["out"].push(input[i].value)
+                        func_tried["out"].push(input[i].value)
                     } else {
-                        console.log(tried)
+                        console.log(func_tried)
                     }
                 }
             }
