@@ -13,55 +13,6 @@
         }
     </style>
     <script>
-        function FocusMove() {
-            frm = Array.prototype.slice.call(document.querySelectorAll('input.box'));
-            console.log(frm)
-            var keycode = event.keyCode;
-            console.log(document.activeElement)
-            var pre = frm.indexOf(document.activeElement);
-            console.log("pre")
-            console.log(pre)
-            console.log("keycode")
-            console.log(keycode)
-            console.log(65 <= keycode && keycode <= 90);
-            if (!frm[pre].value) {
-                console.log("value false");
-                    if(65 <= keycode && keycode <= 90) {
-                        setTimeout(function() {
-                            frm[pre+1].focus();
-                            console.log("pre++")
-                            console.log(pre++)
-                            console.log("frm[pre++]")
-                            console.log(frm[pre++])
-                        }, 0)
-                    } else if (keycode == 8) {
-                        frm[pre-1].focus();
-                        console.log("pre")
-                        console.log(pre-1)
-                        console.log("frm[pre-1]")
-                        console.log(frm[pre-1])
-                    }
-            } else {
-                console.log("vlaue false")
-                if(65 <= keycode && keycode <= 90) {
-                    frm[pre+1].focus();
-                    console.log("pre++")
-                    console.log(pre++)
-                    console.log("frm[pre++]")
-                    console.log(frm[pre++])
-                } else if (keycode == 8) {
-                    setTimeout(function() {
-                        frm[pre-1].focus();
-                        console.log("pre")
-                        console.log(pre-1)
-                        console.log("frm[pre++]")
-                        console.log(frm[pre-1])
-                    }, 0)
-                }
-            }
-            pre = frm.indexOf(document.activeElement);
-            frm[pre].setSelectionRange(1,1);
-        }
     </script>
 </head>
 <body>
@@ -124,39 +75,44 @@
         var tried = {1:[], 2:[], 3:[], 4:[], 5:[], 'out':[]}
         function score(area) {
             console.log("(score)");
-            var func_tried = tried
+            var copy = tried
             var input = document.querySelectorAll(area)
             var clear_memory = 1
             console.log(input);
             for (i=0;i<5;i++) {
                 console.log("temp")
-                console.log(func_tried);
+                console.log(copy);
                 if (input[i].value == answer[i]) {
                     console.log(i);
                     input[i].style.background = "green";
                     input[i].readOnly = true
+                    tried[i+1].push(input[i].value)
                     var query = document.querySelectorAll('.slot' + (i+1).toString())
                     for (e=0;e<6;e++) {
                         query[e].value = input[i].value
                         query[e].style.background = "green";
                         query[e].readOnly = true
+                        frm.splice(frm.indexOf(query[e]), 1);
+                        console.log(frm);
                     }
                 } else if (answer.includes(input[i].value)) {
                     clear_memory = 0
-                    if (!(func_tried[i+1].includes(input[i].value)) && input[i].value) {
+                    if (!(copy[i+1].includes(input[i].value)) && input[i].value) {
                         input[i].style.background = "yellow";
                         console.log(i*-1);
                         input[i].readOnly = true
+                        frm.splice(frm.indexOf(input[i], 1));
                         tried[i+1].push(input[i].value)
                     } else {
                         console.log(tried)
                     }
                 } else {
                     clear_memory = 0
-                    if (!(func_tried['out'].includes(input[i].value))) {
+                    if (!(copy['out'].includes(input[i].value))) {
                         input[i].style.background = "lightgray";
                         console.log(input[i]);
                         input[i].readOnly = true
+                        frm.splice(frm.indexOf(input[i], 1))
                         tried["out"].push(input[i].value)
                     } else {
                         console.log(tried)
@@ -175,6 +131,56 @@
                 alert("정답!")
                 importPage("winner");
             }
+        }
+
+        frm = Array.prototype.slice.call(document.querySelectorAll('input.box'));
+        function FocusMove() {
+            console.log(frm)
+            var keycode = event.keyCode;
+            console.log(document.activeElement)
+            var pre = frm.indexOf(document.activeElement);
+            console.log("pre")
+            console.log(pre)
+            console.log("keycode")
+            console.log(keycode)
+            console.log(65 <= keycode && keycode <= 90);
+            if (!frm[pre].value) {
+                console.log("value false");
+                    if(65 <= keycode && keycode <= 90) {
+                        setTimeout(function() {
+                            frm[pre+1].focus();
+                            console.log("pre++")
+                            console.log(pre++)
+                            console.log("frm[pre++]")
+                            console.log(frm[pre++])
+                        }, 0)
+                    } else if (keycode == 8) {
+                        frm[pre-1].focus();
+                        console.log("pre")
+                        console.log(pre-1)
+                        console.log("frm[pre-1]")
+                        console.log(frm[pre-1])
+                    }
+            } else {
+                console.log("vlaue false")
+                if(65 <= keycode && keycode <= 90) {
+                    frm[pre+1].focus();
+                    console.log("pre++")
+                    console.log(pre++)
+                    console.log("frm[pre++]")
+                    console.log(frm[pre++])
+                } else if (keycode == 8) {
+                    setTimeout(function() {
+                        frm[pre-1].focus();
+                        console.log("pre")
+                        console.log(pre-1)
+                        console.log("frm[pre++]")
+                        console.log(frm[pre-1])
+                    }, 0)
+                }
+            }
+            pre = frm.indexOf(document.activeElement);
+            frm[pre].setSelectionRange(1,1);
         }
     </script>
 </body>
