@@ -71,17 +71,23 @@
         <button onclick="score('.sixth')">제출</button>
     </div>
     <script>
-        var answer = "abcde";
+        var list = ["abcde", "asdfg"]
         var tried = {1:[], 2:[], 3:[], 4:[], 5:[], 'out':[]}
+        function randInt(min, max) {
+          return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        var answer = list[randInt(0, list.length)];
+        console.log(answer);
+        console.log(list.length);
         function score(area) {
             console.log("(score)");
-            var copy = tried
+            var copy = {1:[], 2:[], 3:[], 4:[], 5:[], 'out':[]}
             var input = document.querySelectorAll(area)
             var clear_memory = 1
             console.log(input);
+            console.log("temp")
+            console.log(copy);
             for (i=0;i<5;i++) {
-                console.log("temp")
-                console.log(copy);
                 if (input[i].value == answer[i]) {
                     console.log(i);
                     input[i].style.background = "green";
