@@ -3,8 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <title>donongWordle</title>
+    <style>
+    .box {
+        width:50px;
+        height:50px;
+        font-size:40px;
+        text-align:center;
+        margin-bottom:10px;
+        }
+    </style>
 </head>
 <body>
-<button><a href="game.html" style="text-decoration:none;color: black">시작</a></button>
+    <div id="winner"></div>
+
+    <input class="first box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="first box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="first box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="first box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="first box" maxlength=1 OnKeyDown="FocusMove()">
+    <button onclick="score('.first')">제출</button>
+    <br>
+
+    <input class="second box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="second box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="second box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="second box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="second box" maxlength=1 OnKeyDown="FocusMove()">
+    <button onclick="score('.second')">제출</button>
+    <br>
+
+    <input class="third box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="third box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="third box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="third box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="third box" maxlength=1 OnKeyDown="FocusMove()">
+    <button onclick="score('.third')">제출</button>
+    <br>
+
+    <input class="fourth box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="fourth box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="fourth box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="fourth box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="fourth box" maxlength=1 OnKeyDown="FocusMove()">
+    <button onclick="score('.fourth')">제출</button>
+    <br>
+
+    <input class="fifth box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="fifth box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="fifth box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="fifth box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="fifth box" maxlength=1 OnKeyDown="FocusMove()">
+    <button onclick="score('.fifth')">제출</button>
+    <br>
+
+    <input class="sixth box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="sixth box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="sixth box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="sixth box" maxlength=1 OnKeyDown="FocusMove()">
+    <input class="sixth box" maxlength=1 OnKeyDown="FocusMove()">
+    <button onclick="score('.sixth')">제출</button>
+
+    <script>
+        var answer = "abcde";
+        var tried = {1:[], 2:[], 3:[], 4:[], 5:[], 'out':[]}
+        function score(area) {
+            var input = document.querySelectorAll(area)
+            var clear_memory = 1
+            console.log(input);
+            for (i=0;i<5;i++) {
+                if (input[i].value == answer[i]) {
+                    console.log(i);
+                    input[i].style.background = "green";
+                    input[i].readOnly = true
+                } else if (answer.includes(input[i].value)) {
+                    clear_memory = 0
+                    input[i].style.background = "yellow";
+                    if (!(tried[i+1].includes(input[i].value)) && input[i].value) {
+                        console.log(i*-1);
+                        input[i].readOnly = true
+                        tried[i+1].push(input[i].value)
+                    } else {
+                        console.log(tried)
+                    }
+                } else {
+                    clear_memory = 0
+                    input[i].style.background = "lightgray";
+                    if (!(tried['out'].includes(input[i].value))) {
+                        console.log(input[i]);
+                        input[i].readOnly = true
+                        tried["out"].push(input[i].value)
+                    } else {
+                        console.log(tried)
+                    }
+                }
+            }
+            async function fetchHtmlAsText(url) {
+                return await (await fetch(url)).text();
+            }
+
+            async function importPage(target) {
+                document.querySelector('#' + target).innerHTML = await fetchHtmlAsText(target + '.html');
+            }
+
+            if (clear_memory) {
+                alert("정답!")
+                importPage("winner");
+            }
+        }
+
+        function FocusMove() {
+            frm = Array.prototype.slice.call(document.querySelectorAll('input.box'));
+            console.log(frm)
+            var keycode = event.keyCode;
+            console.log(document.activeElement)
+            var pre = frm.indexOf(document.activeElement);
+            console.log("pre")
+            console.log(pre)
+            console.log("keycode")
+            console.log(keycode)
+            console.log(65 <= keycode && keycode <= 90);
+            if (!frm[pre].value) {
+                console.log("value false");
+                    if(65 <= keycode && keycode <= 90) {
+                        setTimeout(function() {
+                            frm[pre+1].focus();
+                            console.log("pre++")
+                            console.log(pre++)
+                            console.log("frm[pre++]")
+                            console.log(frm[pre++])
+                        }, 0)
+                    } else if (keycode == 8) {
+                        frm[pre-1].focus();
+                        console.log("pre")
+                        console.log(pre-1)
+                        console.log("frm[pre-1]")
+                        console.log(frm[pre-1])
+                    }
+            } else {
+                console.log("vlaue false")
+                if(65 <= keycode && keycode <= 90) {
+                    frm[pre+1].focus();
+                    console.log("pre++")
+                    console.log(pre++)
+                    console.log("frm[pre++]")
+                    console.log(frm[pre++])
+                } else if (keycode == 8) {
+                    setTimeout(function() {
+                        frm[pre-1].focus();
+                        console.log("pre")
+                        console.log(pre-1)
+                        console.log("frm[pre++]")
+                        console.log(frm[pre-1])
+                    }, 0)
+                }
+            }
+            pre = frm.indexOf(document.activeElement);
+            frm[pre].setSelectionRange(1,1);
+        }
+    </script>
 </body>
 </html>
